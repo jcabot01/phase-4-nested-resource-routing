@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :dog_houses, only: [:show]
-  resources :reviews, only: [:show, :index, :create]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :dog_houses, only: [:show] do
+    #nested resource for reviews inside dog_houses
+    resources :reviews, only: [:show, :index] #show and index are only available
+  end
+
+  resources :reviews, only: [:show, :index, :create]  #reviews has its own routes
 end
